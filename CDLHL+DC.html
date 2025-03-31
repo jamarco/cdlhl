@@ -856,6 +856,14 @@
                 guessInput.classList.remove('shake');
                 showChampionships();
 
+                // Add confetti here
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    zIndex: 1000,
+                });
+
             } else {
                 dailyResultElement.textContent = "Incorrect!";
                 dailyResultElement.className = "wrong-answer";
