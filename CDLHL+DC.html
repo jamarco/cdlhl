@@ -177,6 +177,10 @@
             font-size: 0.8rem;
         }
 
+        .incorrect {
+    border: 2px solid #f87171; /* Red border color */
+    box-shadow: 0 0 10px #f87171;
+}
         #play-again-button {
             margin-top: 1.5rem;
             padding: 0.8rem 1.5rem;
@@ -773,16 +777,16 @@
     } else {
         resultElement.textContent = "Incorrect!";
         resultElement.className = "wrong-answer";
-        // Add shake effect to the incorrect player card
+        // Add incorrect class to the incorrect player card
         if (selectedPlayer === 1) {
-            playerCard1Element.classList.add("shake");
+            playerCard1Element.classList.add("incorrect");
         } else {
-            playerCard2Element.classList.add("shake");
+            playerCard2Element.classList.add("incorrect");
         }
         setTimeout(() => {
-            playerCard1Element.classList.remove("shake");
-            playerCard2Element.classList.remove("shake");
-        }, 500);
+            playerCard1Element.classList.remove("incorrect");
+            playerCard2Element.classList.remove("incorrect");
+        }, 2000);
     }
 
     resultContainer.classList.add("show-result");
