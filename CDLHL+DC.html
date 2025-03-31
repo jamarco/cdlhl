@@ -731,53 +731,38 @@
         }
 
         function checkGuess(selectedPlayer) {
-            player1ChampionshipsElement.textContent = player1.championships;
-            player2ChampionshipsElement.textContent = player2.championships;
+    player1ChampionshipsElement.textContent = player1.championships;
+    player2ChampionshipsElement.textContent = player2.championships;
 
-            player1NameResultElement.textContent = player1.name;
-            player1ChampionshipsResultElement.textContent = player1.championships;
-            player2NameResultElement.textContent = player2.name;
-            player2ChampionshipsResultElement.textContent = player2.championships;
-            guessElement.textContent = selectedPlayer === 1 ? player1.name : player2.name;
+    player1NameResultElement.textContent = player1.name;
+    player1ChampionshipsResultElement.textContent = player1.championships;
+    player2NameResultElement.textContent = player2.name;
+    player2ChampionshipsResultElement.textContent = player2.championships;
+    guessElement.textContent = selectedPlayer === 1 ? player1.name : player2.name;
 
-            let correctGuess = false;
-            if (selectedPlayer === 1) {
-                correctGuess = player1.championships > player2.championships;
-            } else {
-                correctGuess = player2.championships > player1.championships;
-            }
+    let correctGuess = false;
+    if (selectedPlayer === 1) {
+        correctGuess = player1.championships > player2.championships;
+    } else {
+        correctGuess = player2.championships > player1.championships;
+    }
 
-            if (correctGuess) {
-                resultElement.textContent = "Correct!";
-                resultElement.className = "correct-answer";
-                score++;
-                // Add confetti here
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    zIndex: 1000,
-                });
-            } else {
-                resultElement.textContent = "Incorrect!";
-                resultElement.className = "wrong-answer";
-                transition: transform 0.5s ease; /* Add transition for shake */
-        }
-
-        /* Add the shake animation here */
-        #guess-input.shake {
-            animation: shake 0.5s;
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
-        }
-            }
- if (selectedPlayer === 1) {
+    if (correctGuess) {
+        resultElement.textContent = "Correct!";
+        resultElement.className = "correct-answer";
+        score++;
+        // Add confetti here
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            zIndex: 1000,
+        });
+    } else {
+        resultElement.textContent = "Incorrect!";
+        resultElement.className = "wrong-answer";
+        // Add shake effect to the incorrect player card
+        if (selectedPlayer === 1) {
             playerCard1Element.classList.add("shake");
         } else {
             playerCard2Element.classList.add("shake");
@@ -787,14 +772,15 @@
             playerCard2Element.classList.remove("shake");
         }, 500);
     }
-            resultContainer.classList.add("show-result");
-            higherButton.disabled = true;
-            lowerButton.disabled = true;
-            playerCard1Element.classList.remove("selected");
-            playerCard2Element.classList.remove("selected");
 
-            setTimeout(displayPlayers, 2000);
-        }
+    resultContainer.classList.add("show-result");
+    higherButton.disabled = true;
+    lowerButton.disabled = true;
+    playerCard1Element.classList.remove("selected");
+    playerCard2Element.classList.remove("selected");
+
+    setTimeout(displayPlayers, 2000);
+}
 
         playerCard1Element.addEventListener("click", () => {
             checkGuess(1);
