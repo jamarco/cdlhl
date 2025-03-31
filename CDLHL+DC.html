@@ -777,18 +777,26 @@
     } else {
         resultElement.textContent = "Incorrect!";
         resultElement.className = "wrong-answer";
-        // Add incorrect class to the incorrect player card
+        // Add shake effect to the incorrect player card
         if (selectedPlayer === 1) {
-            playerCard1Element.classList.add("incorrect");
+            playerCard1Element.classList.add("shake");
         } else {
-            playerCard2Element.classList.add("incorrect");
+            playerCard2Element.classList.add("shake");
         }
         setTimeout(() => {
-            playerCard1Element.classList.remove("incorrect");
-            playerCard2Element.classList.remove("incorrect");
-        }, 2000);
+            playerCard1Element.classList.remove("shake");
+            playerCard2Element.classList.remove("shake");
+        }, 500);
     }
 
+    resultContainer.classList.add("show-result");
+    higherButton.disabled = true;
+    lowerButton.disabled = true;
+    playerCard1Element.classList.remove("selected");
+    playerCard2Element.classList.remove("selected");
+
+    setTimeout(displayPlayers, 2000);
+}
     resultContainer.classList.add("show-result");
     higherButton.disabled = true;
     lowerButton.disabled = true;
