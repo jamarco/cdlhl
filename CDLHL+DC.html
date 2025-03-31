@@ -761,8 +761,32 @@
             } else {
                 resultElement.textContent = "Incorrect!";
                 resultElement.className = "wrong-answer";
-            }
+                transition: transform 0.5s ease; /* Add transition for shake */
+        }
 
+        /* Add the shake animation here */
+        #guess-input.shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+            }
+ if (selectedPlayer === 1) {
+            playerCard1Element.classList.add("shake");
+        } else {
+            playerCard2Element.classList.add("shake");
+        }
+        setTimeout(() => {
+            playerCard1Element.classList.remove("shake");
+            playerCard2Element.classList.remove("shake");
+        }, 500);
+    }
             resultContainer.classList.add("show-result");
             higherButton.disabled = true;
             lowerButton.disabled = true;
